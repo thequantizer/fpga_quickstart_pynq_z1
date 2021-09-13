@@ -28,7 +28,7 @@ module top(
     );
     
     //initalize bit to 0
-    (* mark_debug = "true" *) bit btn_pressed = 1'b0;
+    (* mark_debug = "true" *) bit btn_pressed;
     
     //debounce module will pulse every time a button is pressed
     debounce #(.DEBOUNCE_COUNT_THRESHOLD(300)) debounce_mod(.*);
