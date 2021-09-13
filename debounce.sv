@@ -22,16 +22,17 @@
 
 module debounce
     #(
-        parameter DEBOUNCE_COUNT_THRESHOLD = 255
-    )
+    //debounce counter paramater that is defaulted to 255 if not set by calling module
+    parameter DEBOUNCE_COUNT_THRESHOLD = 255
+)
     (
     input wire reset,
-    input wire sysclk, 
+    input wire sysclk,
     input wire btn,
     //this will pulse every time the button is pressed after debouncing
     output bit btn_pressed = '0
-    );
-    
+);
+
     //ASYNC_REG = "TRUE" tells Vivado that these registers are used for syncronization
     //and should be placed as close together as possible
     //mark_debug = "true" markes the signal for debugging via Integrated Logic Analyzer (ILA)
@@ -42,16 +43,16 @@ module debounce
     //clog2 determinse the number of bits needed to hold the paramaterized debounce counter and subtract 1 for the 0 offset of the a
     (* mark_debug = "true" *) bit [$clog2(DEBOUNCE_COUNT_THRESHOLD)-1:0] debounce_counter = '0;
     (* mark_debug = "true" *) bit debounce_counter_en = '0;
-    
+
     //this will generate a pulse when the button is pressed. One pulse per button press
     //it is syncronizing the async button signal to the clock then detecting the edge
     always @(posedge sysclk or posedge reset) begin
         if(reset) begin
-            btn_pressed ='0;
-            button_sync = '0;
-            debounce_counter = '0;
-            debounce_counter_en = '0;
-        end 
+            btn_pressed <= '0;
+            button_sync <= '0;
+            debounce_counter <= '0;
+            debounce_counter_en <= '0;
+        end
         else begin
             //turn off button down pulse if previous iteration detected a button press
             btn_pressed <= '0;
@@ -68,7 +69,7 @@ module debounce
             else if (button_sync[1] == 1'b0) begin
                 debounce_counter_en <= '0;
             end
-            
+
             //this runs onece per clock so it will wait until the button has been
             //pressed long enough to turn the btn_pressed signal to true
             if (debounce_counter_en) begin
@@ -82,6 +83,6 @@ module debounce
                     btn_pressed <= '1;
                 end
             end
-        end     
+        end
     end
 endmodule
