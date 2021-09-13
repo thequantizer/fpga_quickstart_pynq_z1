@@ -36,10 +36,10 @@ module test_bench(
     wire [3:0] led;
 
     top uut_top(
+        .reset_btn(rst),
         .sysclk(sim_clk),
         .btn(btn[0]),
-        .led(led),
-        .reset(rst)
+        .led(led)
     );
     
     always #HALF_CLK_CYCLE sim_clk = ~sim_clk;
