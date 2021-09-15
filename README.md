@@ -1,6 +1,6 @@
 # FPGA Quick Start - PYNQ Z1 (Xilinx Vivado)  
 
-PYNQ Z1 Board Files can be found here  
+Original PYNQ Z1 Board Files can be found here  
  * https://github.com/cathalmccabe/pynq-z1_board_files/raw/master/pynq-z1.zip
 
  
