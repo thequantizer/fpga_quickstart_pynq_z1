@@ -1,6 +1,6 @@
 # FPGA Quick Start - PYNQ Z1 (Xilinx Vivado)  
 
-[The Quantizer](www.thequantizer.com)
+<a href="www.thequantizer.com">The Quantizer</a>
 
 Original PYNQ Z1 board files can be found here  
  * https://github.com/cathalmccabe/pynq-z1_board_files/raw/master/pynq-z1.zip
